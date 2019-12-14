@@ -1,3 +1,4 @@
+import eel
 import requests
 from bs4 import BeautifulSoup
 
@@ -28,8 +29,15 @@ def get_page_html(url):
 
 
 def get_soup(page):
-    soup = BeautifulSoup(page.content, 'html.parser')
+    soup = BeautifulSoup(page.content, "html.parser")
     return soup
 
 
-console_log.debug("Starting Program!")
+def main():
+    console_log.debug("Starting Program!")
+    eel.init("web_view")
+    eel.start("index.html")
+
+
+if __name__ == "__main__":
+    main()
