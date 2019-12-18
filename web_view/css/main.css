@@ -1,0 +1,36 @@
+.title {
+    margin-top: 4rem;
+}
+
+textarea {
+    resize: vertical;
+    direction: rtl;
+}
+
+/* Larger than phablet */
+@media (min-width: 550px) {
+    .title {
+        margin-top: 6rem;
+    }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+    .title {
+        margin-top: 8rem;
+    }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+    .title {
+        margin-top: 10rem;
+    }
+}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {
+    .title {
+        margin-top: 12rem;
+    }
+}
