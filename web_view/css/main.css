@@ -2,9 +2,27 @@
     margin-top: 4rem;
 }
 
+.meaning {
+    font-size: 19px;
+}
+
 textarea {
     resize: vertical;
     direction: rtl;
+}
+
+input[type="radio"] {
+    direction: rtl;
+    text-align: right !important;
+    float: right;
+    height: 19px;
+    width: 19px;
+    margin: 5px;
+}
+
+label {
+    direction: rtl;
+    text-align: right !important;
 }
 
 /* Larger than phablet */

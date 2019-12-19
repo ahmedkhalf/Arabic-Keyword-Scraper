@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="js/wordinput.js"></script>
     <title>Arabic Keyword Scraper</title>
 </head>
 <body>
@@ -15,7 +17,7 @@
         <h1 class="title">Arabic Keyword Scraper</h1>
         <label for="exampleMessage">Word List</label>
         <textarea class="u-full-width" id="wordlist" placeholder="Input list of words separated by a newline"></textarea>
-        <a class="button button-primary" href="wordinput.html">Get Words</a>
+        <a class="button button-primary" onclick="send_word_input()">Get Words</a>
         <a class="button" href="index.html">Back</a>
     </div>
 </body>
