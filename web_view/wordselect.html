@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/wordselect.js"></script>
+    <script type="text/javascript" src="/eel.js"></script>
+    <title>Arabic Keyword Scraper</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Arabic Keyword Scraper</h1>
+        <hr class="separator">
+        <img id="loading" class="loading" src="img/loading.gif" alt="loading...">
+        <div id="meanings">
+            <div class="meaning-btn hidden">
+                <input type="radio" id="b1" name="meaning">
+                <label class="meaning" for="b1">TEXT</label>
+            </div>
+        </div>
+        <div id="final-step" class="hidden">
+            <h3>We are currently generating a word document</h3>
+            <h4>Please wait...</h4>
+        </div>
+        <hr class="separator">
+        <div>
+            <a class="button button-primary right" onclick="send_word_input()">Next</a>
+            <a class="button left" href="index.html">Back</a>
+        </div>
+        <hr class="separator">
+        <hr class="separator">
+    </div>
+</body>
+</html>
