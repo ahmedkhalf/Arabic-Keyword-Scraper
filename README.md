@@ -9,7 +9,7 @@ You can install required packages using pip:
 
 Install **Beautiful Soup 4**
 
-    pip install Beautiful Soup 4
+    pip install beautifulsoup4
 Install **Eel**
 
     pip install eel
