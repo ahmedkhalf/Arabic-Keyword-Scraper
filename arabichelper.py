@@ -98,6 +98,7 @@ def request_words():
         words.append(word.word)
     return words
 
+
 @eel.expose
 def get_meaning(id):
     global WordList
