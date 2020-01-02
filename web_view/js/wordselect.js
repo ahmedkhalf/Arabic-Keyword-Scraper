@@ -1,5 +1,6 @@
 var words = [];
 var meanings = [];
+var selected = [];
 var pointer = 0;
 
 window.addEventListener("load", function(){
@@ -34,14 +35,26 @@ function reset_meanings(){
 
 function next_keyword(){
     pointer += 1;
-    if(pointer >= words.length){
-        var meanings_div = document.getElementById("meanings");
-        meanings_div.innerHTML = "";
-        document.getElementById("final-step").className = "";
-        document.getElementById("back-next").className = "hidden";
-    }else{
-        reset_meanings();
-        eel.get_meaning(pointer);
-        document.getElementById("loading").style.display = "block";
+    meanings_radio = document.getElementsByName("meaning");
+    var selection = null;
+    for(var i = 0; i < meanings_radio.length; i++){
+        if(meanings_radio[i].checked){
+            selection = meanings_radio[i].id;
+            selection = parseInt(selection.substring(1, selection.length));
+        }
+    }
+    if(selection != null){
+        selected.push(selection);
+        if(pointer >= words.length){
+            var meanings_div = document.getElementById("meanings");
+            meanings_div.innerHTML = "";
+            document.getElementById("final-step").className = "";
+            document.getElementById("back-next").className = "hidden";
+            eel.generate_doc(selected);
+        }else{
+            reset_meanings();
+            eel.get_meaning(pointer);
+            document.getElementById("loading").style.display = "block";
+        }
     }
 }

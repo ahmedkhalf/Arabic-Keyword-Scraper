@@ -1,6 +1,9 @@
 import eel
 import requests
 from bs4 import BeautifulSoup
+from docx import Document
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.style import WD_STYLE_TYPE
 from threading import Thread
 
 
@@ -107,6 +110,33 @@ def get_meaning(id):
             if WordList[id].lookup_done:
                 eel.add_meaning(WordList[id].meanings)
                 break
+    else:
+        console_log.error("Cannot get word id: " + id + ", as it exceeds WordList length")
+
+
+@eel.expose
+def generate_doc(selectionList):
+    global WordList
+    if len(selectionList) == len(WordList):
+        console_log.debug("Generating word document with selection: " + str(selectionList))
+        document = Document()
+        mystyle = document.styles.add_style('mystyle', WD_STYLE_TYPE.CHARACTER)
+        i = 0
+        for selection in selectionList:
+            meaning_text = WordList[i].meanings[selection]
+            meaning_text = meaning_text.strip()
+            paragraph = document.add_paragraph()
+            paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+            run = paragraph.add_run(meaning_text)
+            run.style = mystyle
+            font = run.font
+            font.rtl = True
+            i += 1
+        document.save('output.docx')
+        console_log.debug("Finished generating document!")
+        return True
+    else:
+        console_log.error("SelectionList != WordList, at generate_doc function")
 
 
 def on_close(page, sockets):
@@ -117,7 +147,7 @@ web_options = {
 	"mode": "chrome-app",
 	"host": "localhost",
 	"port": 8000,
-    "cmdline_args": ["--disable-extensions"]
+    "cmdline_args": ["--disable-extensions"],
 }
 
 
@@ -125,8 +155,10 @@ def main():
     print("[ Arabic Keyword Scraper Console ]\n")
     console_log.debug("Starting Program!")
     eel.init("web_view")
-    eel.start("index.html", size=(507, 595), options=web_options, callback=on_close)
-
+    try:
+        eel.start("index.html", size=(507, 595), options=web_options, callback=on_close)
+    except EnvironmentError:
+        console_log.error("Please install Google Chrome on your system for the app to properly function")
 
 if __name__ == "__main__":
     main()
