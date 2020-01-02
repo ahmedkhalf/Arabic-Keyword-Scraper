@@ -50,11 +50,20 @@ function next_keyword(){
             meanings_div.innerHTML = "";
             document.getElementById("final-step").className = "";
             document.getElementById("back-next").className = "hidden";
-            eel.generate_doc(selected);
+            eel.generate_doc(selected)(function(value){
+                if(value == true){
+                    document.getElementById("final-step").className = "hidden";
+                    document.getElementById("file-done").className = "";
+                }
+            });
         }else{
             reset_meanings();
             eel.get_meaning(pointer);
             document.getElementById("loading").style.display = "block";
         }
     }
+}
+
+function open_file(mode){
+    eel.open_file(mode);
 }

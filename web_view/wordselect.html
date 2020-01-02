@@ -28,6 +28,14 @@
             <img src="img/generating.gif" alt="generating..." style="width: 128px;">
             <h4>Please wait...</h4>
         </div>
+        <div id="file-done" class="hidden">
+            <h3>Your file is ready!</h3>
+            <img src="img/generating.gif" alt="generating..." style="width: 128px;">
+            <div>
+                <a class="button button-primary right" onclick="open_file(0)">Open</a>
+                <a class="button left" onclick="open_file(1)">View in explorer</a>
+            </div>
+        </div>
         <hr class="separator">
         <div id="back-next">
             <a class="button button-primary right" onclick="next_keyword()">Next</a>

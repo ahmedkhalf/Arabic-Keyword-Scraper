@@ -1,5 +1,7 @@
 import eel
+import os
 import requests
+import subprocess
 from bs4 import BeautifulSoup
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -139,6 +141,17 @@ def generate_doc(selectionList):
         console_log.error("SelectionList != WordList, at generate_doc function")
 
 
+@eel.expose
+def open_file(mode):
+    file = str(os.path.dirname(os.path.abspath(__file__)) + r"\output.docx")
+    if mode == 1:
+        console_log.debug("Opening file in explorer")
+        subprocess.Popen(r'explorer /select,"' + file + r'"')
+    else:
+        console_log.debug("Opening file")
+        os.startfile(file)
+
+
 def on_close(page, sockets):
 	console_log.debug(page +  " closed")
 
@@ -159,6 +172,7 @@ def main():
         eel.start("index.html", size=(507, 595), options=web_options, callback=on_close)
     except EnvironmentError:
         console_log.error("Please install Google Chrome on your system for the app to properly function")
+        input("Press any key to continue...")
 
 if __name__ == "__main__":
     main()
