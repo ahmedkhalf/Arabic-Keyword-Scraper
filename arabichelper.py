@@ -131,8 +131,8 @@ def generate_doc(selectionList):
             meaning_text = WordList[i].meanings[selection]
             meaning_text = meaning_text.strip()
             meaning_text = list(filter(bool, meaning_text.splitlines()))
-            word_text = meaning_text[0][0:meaning_text[0].find(":")]
-            pos_text = meaning_text[0][meaning_text[0].find(":"):]
+            word_text = meaning_text[0][0:meaning_text[0].find(":")+1]
+            pos_text = meaning_text[0][meaning_text[0].find(":")+1:]
             meaning_text = meaning_text[1]
 
             heading = document.add_heading(level=1)
