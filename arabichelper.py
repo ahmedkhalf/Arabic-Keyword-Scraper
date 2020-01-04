@@ -58,13 +58,6 @@ class Word():
             self.meanings.append(word.text)
 
 
-    def select_meaning(self):
-        console_log.debug("Selecting meanings for word: " + self.word)
-        for word in self.meanings:
-            eel.add_meaning(word.text)
-        eel.print_meaning()
-
-
     def lookup(self):
         url = self.get_url()
         page = self.get_page_html(url)
@@ -178,24 +171,12 @@ def open_file(mode):
         os.startfile(file)
 
 
-def on_close(page, sockets):
-	console_log.debug(page +  " closed")
-
-
-web_options = {
-	"mode": "chrome-app",
-	"host": "localhost",
-	"port": 8000,
-    "cmdline_args": ["--disable-extensions"],
-}
-
-
 def main():
     print("[ Arabic Keyword Scraper Console ]\n")
     console_log.debug("Starting Program!")
     eel.init("web_view")
     try:
-        eel.start("index.html", size=(507, 595), options=web_options, callback=on_close)
+        eel.start("index.html", size=(507, 595), mode="chrome", cmdline_args=["--disable-extensions"], host="localhost", port=8000)
     except EnvironmentError:
         console_log.error("Please install Google Chrome on your system for the app to properly function")
         input("Press any key to continue...")
