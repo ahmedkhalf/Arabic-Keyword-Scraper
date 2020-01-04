@@ -1,4 +1,4 @@
-
+![Arabic Keyword Scraper Logo](https://imgur.com/gw2QHvN.png)
 # Arabic Keyword Scraper
 *A word scraper, that helps you automate your work.*
 
@@ -10,6 +10,9 @@ You can install required packages using pip:
 Install **Beautiful Soup 4**
 
     pip install beautifulsoup4
+Install **python-docx**
+
+    pip install python-docx
 Install **Eel**
 
     pip install eel
