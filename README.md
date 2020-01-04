@@ -2,6 +2,8 @@
 # Arabic Keyword Scraper
 *A word scraper, that helps you automate your work.*
 
+![Before and After](https://imgur.com/ANjiXdA.png)
+
 ## Prerequisites
 This python project is targeted to work with **python 3**, and will likely not work with python 2 unless modified.
 
