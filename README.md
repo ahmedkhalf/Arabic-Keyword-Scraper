@@ -9,6 +9,9 @@ This python project is targeted to work with **python 3**, and will likely not w
 
 You can install required packages using pip:
 
+Install **Requests**
+
+    pip install requests
 Install **Beautiful Soup 4**
 
     pip install beautifulsoup4
