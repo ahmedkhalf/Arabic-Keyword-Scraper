@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.style import WD_STYLE_TYPE
+from docx.shared import Pt, RGBColor
 from threading import Thread
 
 
@@ -122,17 +123,42 @@ def generate_doc(selectionList):
     if len(selectionList) == len(WordList):
         console_log.debug("Generating word document with selection: " + str(selectionList))
         document = Document()
-        mystyle = document.styles.add_style('mystyle', WD_STYLE_TYPE.CHARACTER)
+        word_style = document.styles.add_style('wordstyle', WD_STYLE_TYPE.CHARACTER)
+        pof_style = document.styles.add_style('pofstyle', WD_STYLE_TYPE.CHARACTER)
+        meaning_style = document.styles.add_style('meaningstyle', WD_STYLE_TYPE.CHARACTER)
         i = 0
         for selection in selectionList:
             meaning_text = WordList[i].meanings[selection]
             meaning_text = meaning_text.strip()
+            meaning_text = list(filter(bool, meaning_text.splitlines()))
+            word_text = meaning_text[0][0:meaning_text[0].find(":")]
+            pos_text = meaning_text[0][meaning_text[0].find(":"):]
+            meaning_text = meaning_text[1]
+
+            heading = document.add_heading(level=1)
+            heading.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             paragraph = document.add_paragraph()
             paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-            run = paragraph.add_run(meaning_text)
-            run.style = mystyle
-            font = run.font
-            font.rtl = True
+
+            word_run = heading.add_run(word_text)
+            word_run.style = word_style
+            word_font = word_run.font
+            word_font.rtl = True
+            word_font.size = Pt(16)
+            word_font.bold = True
+            word_font.color.rgb = RGBColor(0x0, 0x70, 0xC0)
+
+            pos_run = heading.add_run(pos_text)
+            pos_run.style = pof_style
+            pos_font = pos_run.font
+            pos_font.rtl = True
+            pos_font.size = Pt(16)
+            pos_font.color.rgb = RGBColor(0x0, 0x20, 0x60)
+
+            meaning_run = paragraph.add_run(meaning_text)
+            meaning_run.style = meaning_style
+            meaning_font = meaning_run.font
+            meaning_font.rtl = True
             i += 1
         document.save('output.docx')
         console_log.debug("Finished generating document!")
